@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{DA5B447A-27FE-4133-AC37-C1FE646BE5CB}</ProjectGuid>
+    <RootNamespace>SolaEngine</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(ProjectDir)extends\libpng;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opengl32.lib;glew32s.lib;glu32.lib;freeglut.lib;freeglut_static.lib;libpng16.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)extends\libpng;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Users\solaAnt\Desktop\SolaEngine\SolaEngine\SolaEngine\openlDev\include;C:\Users\solaAnt\Desktop\SolaEngine\SolaEngine\SolaEngine\openlDev\include\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>C:\Users\solaAnt\Desktop\SolaEngine\SolaEngine\SolaEngine\openlDev\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32s.lib;glu32.lib;freeglut.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="core\SLNode.cpp" />
+    <ClCompile Include="core\SLPoint.cpp" />
+    <ClCompile Include="core\SLScene.cpp" />
+    <ClCompile Include="core\SLSize.cpp" />
+    <ClCompile Include="core\SLTexture.cpp" />
+    <ClCompile Include="core\SLTransformInfo.cpp" />
+    <ClCompile Include="events\BaseEvent.cpp" />
+    <ClCompile Include="events\BaseHandler.cpp" />
+    <ClCompile Include="extends\math\Mat4.cpp" />
+    <ClCompile Include="extends\math\MathUtil.cpp" />
+    <ClCompile Include="extends\math\Quaternion.cpp" />
+    <ClCompile Include="extends\math\Vec2.cpp" />
+    <ClCompile Include="extends\math\Vec3.cpp" />
+    <ClCompile Include="extends\math\Vec4.cpp" />
+    <ClCompile Include="Launcher.cpp" />
+    <ClCompile Include="managers\SLSceneManager.cpp" />
+    <ClCompile Include="managers\SLTextureManager.cpp" />
+    <ClCompile Include="openlDev\gltools\GLBatch.cpp" />
+    <ClCompile Include="openlDev\gltools\GLShaderManager.cpp" />
+    <ClCompile Include="openlDev\gltools\GLTools.cpp" />
+    <ClCompile Include="openlDev\gltools\GLTriangleBatch.cpp" />
+    <ClCompile Include="openlDev\gltools\math3d.cpp" />
+    <ClCompile Include="Runner.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="core\SLNode.h" />
+    <ClInclude Include="core\SLPoint.h" />
+    <ClInclude Include="core\SLScene.h" />
+    <ClInclude Include="core\SLSize.h" />
+    <ClInclude Include="core\SLTexture.h" />
+    <ClInclude Include="core\SLTransformInfo.h" />
+    <ClInclude Include="events\BaseEvent.h" />
+    <ClInclude Include="events\BaseHandler.h" />
+    <ClInclude Include="extends\libpng\Libpng.h" />
+    <ClInclude Include="extends\math\Mat4.h" />
+    <ClInclude Include="extends\math\MathBase.h" />
+    <ClInclude Include="extends\math\MathUtil.h" />
+    <ClInclude Include="extends\math\Quaternion.h" />
+    <ClInclude Include="extends\math\Vec2.h" />
+    <ClInclude Include="extends\math\Vec3.h" />
+    <ClInclude Include="extends\math\Vec4.h" />
+    <ClInclude Include="Launcher.h" />
+    <ClInclude Include="managers\SLSceneManager.h" />
+    <ClInclude Include="managers\SLTextureManager.h" />
+    <ClInclude Include="TestCode.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="extends\math\Mat4.inl" />
+    <None Include="extends\math\MathUtil.inl" />
+    <None Include="extends\math\Quaternion.inl" />
+    <None Include="extends\math\Vec2.inl" />
+    <None Include="extends\math\Vec3.inl" />
+    <None Include="extends\math\Vec4.inl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
