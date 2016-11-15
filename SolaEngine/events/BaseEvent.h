@@ -1,5 +1,5 @@
-#ifndef __TOUCH_EVENT_H_
-#define __TOUCH_EVENT_H_
+#ifndef __BASE_EVENT_H_
+#define __BASE_EVENT_H_
 using namespace std;
 #include <map>
 #include <functional>

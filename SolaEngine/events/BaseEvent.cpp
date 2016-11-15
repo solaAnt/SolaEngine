@@ -1,7 +1,6 @@
+//create by hy 20161115
 #include "BaseEvent.h"
-
 const string BaseEvent::EVENT_ON_NODE_UPDATED = "EVENT_ON_NODE_UPDATED";
-
 BaseEvent* BaseEvent::_instance = 0;
 
 BaseEvent::BaseEvent()
@@ -75,6 +74,7 @@ void BaseEvent::removeListener(string eventName, BaseHandler* handlerValue){
 		auto it = find(handlers->begin(), handlers->end(), handlerValue);
 		if (it != handlers->end()){
 			handlers->erase(it);
+			delete *it;
 			printf("Remove handler.\r\n");
 		}
 	}

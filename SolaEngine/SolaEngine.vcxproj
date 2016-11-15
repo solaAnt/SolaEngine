@@ -44,14 +44,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)extends\libpng;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)extends\libpng;$(ProjectDir)openlDev\include\GL;$(ProjectDir)openlDev\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glew32s.lib;glu32.lib;freeglut.lib;freeglut_static.lib;libpng16.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)extends\libpng;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;glew32s.lib;freeglut.lib;freeglut_static.lib;libpng16.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)extends\libpng;$(ProjectDir)openlDev\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -81,6 +81,7 @@
     <ClCompile Include="core\SLTransformInfo.cpp" />
     <ClCompile Include="events\BaseEvent.cpp" />
     <ClCompile Include="events\BaseHandler.cpp" />
+    <ClCompile Include="events\TouchEvent.cpp" />
     <ClCompile Include="extends\math\Mat4.cpp" />
     <ClCompile Include="extends\math\MathUtil.cpp" />
     <ClCompile Include="extends\math\Quaternion.cpp" />
@@ -106,6 +107,7 @@
     <ClInclude Include="core\SLTransformInfo.h" />
     <ClInclude Include="events\BaseEvent.h" />
     <ClInclude Include="events\BaseHandler.h" />
+    <ClInclude Include="events\TouchEvent.h" />
     <ClInclude Include="extends\libpng\Libpng.h" />
     <ClInclude Include="extends\math\Mat4.h" />
     <ClInclude Include="extends\math\MathBase.h" />

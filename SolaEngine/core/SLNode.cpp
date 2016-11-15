@@ -1,5 +1,5 @@
 #include "SLNode.h"
-#include "../events/BaseEvent.h"
+#include "../events/TouchEvent.h"
 #include "SLPoint.h"
 
 Vec3 SLNode::covWtn(Vec3 wp){
@@ -218,9 +218,9 @@ void SLNode::_init(){
 		SLPoint* p = (SLPoint*)(data);
 
 		Vec3 res = this->covWtn(Vec3(p->x, p->y, 0));
-		printf("asd%f,%f \r\n", res.x, res.y);
+		printf("EVENT_ON_TOUCH_BEGIN%f,%f \r\n", res.x, res.y);
 	};
 
-	BaseEvent* be = BaseEvent::getInstance();
-	be->addEventListener("aaa", new BaseHandler(a));
+	TouchEvent* event = TouchEvent::getInstance();
+	event->addEventListener(TouchEvent::EVENT_ON_TOUCH_BEGIN, new BaseHandler(a));
 }

@@ -5,7 +5,7 @@
 #include <GLFrame.h>
 #include <GLMatrixStack.h>
 #include <GLGeometryTransform.h>
-#include "events/BaseEvent.h"
+#include "events/TouchEvent.h"
 #include "TestCode.h"
 
 #ifdef __APPLE__
@@ -52,8 +52,11 @@ void OnMouse(int key, int isUp, int x, int y)
 	SLPoint wp = Launcher::getInstance()->screen2wp(&p);
 	printf("wp.x is %f,wp.y is %f \r\n", wp.x, wp.y);
 
-	BaseEvent* be = BaseEvent::getInstance();
-	be->dispathEvent("aaa", &wp);
+	TouchEvent* event = TouchEvent::getInstance();
+	if (isUp == 0)
+		event->dispathEvent(TouchEvent::EVENT_ON_TOUCH_BEGIN, &wp);
+	else
+		event->dispathEvent(TouchEvent::EVENT_ON_TOUCH_END, &wp);
 }
 
 void OnMouseMove(int x,int y){
@@ -63,6 +66,8 @@ void OnMouseMove(int x,int y){
 	p.x = (float)x;
 	p.y = (float)y;
 	SLPoint wp = Launcher::getInstance()->screen2wp(&p);
+	//TouchEvent* be = TouchEvent::getInstance();
+	//be->dispathEvent(TouchEvent::EVENT_ON_TOUCH_BEGIN, &wp);
 	//printf("wp.x is %f,wp.y is %f \r\n", wp.x, wp.y);
 }
 

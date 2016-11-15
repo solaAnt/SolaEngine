@@ -105,6 +105,9 @@
     <ClCompile Include="extends\math\Mat4.cpp">
       <Filter>源文件\extends\math</Filter>
     </ClCompile>
+    <ClCompile Include="events\TouchEvent.cpp">
+      <Filter>源文件\events</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\SLTexture.h">
@@ -166,6 +169,9 @@
     </ClInclude>
     <ClInclude Include="extends\math\Mat4.h">
       <Filter>源文件\extends\math</Filter>
+    </ClInclude>
+    <ClInclude Include="events\TouchEvent.h">
+      <Filter>源文件\events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
