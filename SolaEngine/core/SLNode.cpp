@@ -1,6 +1,36 @@
+/**
+	create by hy 20161117
+*/
 #include "SLNode.h"
 #include "../events/TouchEvent.h"
 #include "SLPoint.h"
+
+
+void SLNode::setTouchHnadler(EventHandler callBackd){
+	if (_touchHnadler != nullptr){
+		delete _touchHnadler;
+		_touchHnadler = nullptr;
+	}
+	_callBackd = callBackd;
+	//test add click event
+	EventHandler a = [&](void* data){
+		SLPoint* p = (SLPoint*)(data);
+
+		Vec3 res = this->covWtn(Vec3(p->x, p->y, 0));
+		printf("EVENT_ON_TOUCH_BEGIN%f,%f \r\n", res.x, res.y);
+		printf("There need a hit Test.");
+
+		TouchEventData touchEventData;
+		touchEventData.eventName = TouchEvent::EVENT_ON_TOUCH_BEGIN;
+		touchEventData.nodePoint = res;
+
+		_callBackd((void*)&touchEventData);
+	};
+
+	TouchEvent* event = TouchEvent::getInstance();
+	_touchHnadler = new BaseHandler(a);
+	event->addEventListener(TouchEvent::EVENT_ON_TOUCH_BEGIN, _touchHnadler);
+}
 
 Vec3 SLNode::covWtn(Vec3 wp){
 	Mat4 mat = this->getNtwTransform().getInversed();
@@ -210,17 +240,4 @@ void SLNode::_init(){
 	_texture = nullptr;
 	_isRunning = false;
 	_alpha = 1.0f;
-
-	//test add click event
-	EventHandler a = [this](void* data){
-		/*int a = *((int*)data);*/
-		this->setAlpha(this->getAlpha() + 0.1);
-		SLPoint* p = (SLPoint*)(data);
-
-		Vec3 res = this->covWtn(Vec3(p->x, p->y, 0));
-		printf("EVENT_ON_TOUCH_BEGIN%f,%f \r\n", res.x, res.y);
-	};
-
-	TouchEvent* event = TouchEvent::getInstance();
-	event->addEventListener(TouchEvent::EVENT_ON_TOUCH_BEGIN, new BaseHandler(a));
 }

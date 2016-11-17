@@ -6,6 +6,12 @@
 #define __TOUCH_EVENT_H_
 using namespace std;
 #include "BaseEvent.h"
+#include "../extends/math/Vec3.h"
+
+struct TouchEventData{
+	string eventName;
+	Vec3 nodePoint;
+};
 
 class TouchEvent :public BaseEvent
 {

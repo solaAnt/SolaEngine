@@ -2,6 +2,7 @@
 #include "managers/SLSceneManager.h"
 #include "managers/SLTextureManager.h"
 #include "core/SLScene.h"
+#include "events/TouchEvent.h"
 #include <sys/timeb.h>
 
 Launcher* Launcher::_instance = 0;
@@ -130,6 +131,11 @@ void Launcher::startUp(){
 	aaaaa->setPosition(300, 410);
 	aaaaa->setTexture(t);
 
+	EventHandler a = [](void* data){
+		TouchEventData* touchEventData = (TouchEventData*)data;
+		printf("touchEventData %s", touchEventData->eventName.c_str());
+	};
+	aaaaa->setTouchHnadler(a);
 
 	rScene->addChild(aaaaa);
 	rScene->addChild(_testNode3);

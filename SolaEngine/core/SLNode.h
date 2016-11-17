@@ -16,6 +16,8 @@ using namespace std;
 class SLNode:public BaseEvent
 {
 public:
+	void setTouchHnadler(EventHandler a);
+public:
 	Mat4 getNtpTransform();
 	Mat4 getNtwTransform();
 	Vec3 covNtw(Vec3 np);
@@ -58,5 +60,7 @@ private:
 
 	float _alpha;
 	SLTexture* _texture;
+	BaseHandler* _touchHnadler;
+	EventHandler _callBackd;
 };
 #endif
