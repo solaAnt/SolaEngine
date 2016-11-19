@@ -133,9 +133,10 @@ void Launcher::startUp(){
 
 	EventHandler a = [](void* data){
 		TouchEventData* touchEventData = (TouchEventData*)data;
-		printf("touchEventData %s", touchEventData->eventName.c_str());
+		printf("touchEventData %s\r\n", touchEventData->eventName.c_str());
 	};
-	aaaaa->setTouchHnadler(a);
+	aaaaa->setTouchHandler(a);
+	aaaaa->removeTouchHnadler();
 
 	rScene->addChild(aaaaa);
 	rScene->addChild(_testNode3);

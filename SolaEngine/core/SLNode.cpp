@@ -5,8 +5,17 @@
 #include "../events/TouchEvent.h"
 #include "SLPoint.h"
 
+void SLNode::removeTouchHnadler(){
+	if (_callBackd == nullptr || _touchHnadler == nullptr)
+		return;
 
-void SLNode::setTouchHnadler(EventHandler callBackd){
+	_callBackd = nullptr;
+
+	TouchEvent* event = TouchEvent::getInstance();
+	event->removeListener(TouchEvent::EVENT_ON_TOUCH_BEGIN, _touchHnadler);
+}
+
+void SLNode::setTouchHandler(EventHandler callBackd){
 	if (_touchHnadler != nullptr){
 		delete _touchHnadler;
 		_touchHnadler = nullptr;
@@ -18,7 +27,7 @@ void SLNode::setTouchHnadler(EventHandler callBackd){
 
 		Vec3 res = this->covWtn(Vec3(p->x, p->y, 0));
 		printf("EVENT_ON_TOUCH_BEGIN%f,%f \r\n", res.x, res.y);
-		printf("There need a hit Test.");
+		printf("There need a hit Test.\r\n");
 
 		TouchEventData touchEventData;
 		touchEventData.eventName = TouchEvent::EVENT_ON_TOUCH_BEGIN;

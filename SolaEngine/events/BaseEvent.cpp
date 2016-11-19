@@ -74,7 +74,8 @@ void BaseEvent::removeListener(string eventName, BaseHandler* handlerValue){
 		auto it = find(handlers->begin(), handlers->end(), handlerValue);
 		if (it != handlers->end()){
 			handlers->erase(it);
-			delete *it;
+			delete handlerValue;
+
 			printf("Remove handler.\r\n");
 		}
 	}

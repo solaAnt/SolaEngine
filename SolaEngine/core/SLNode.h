@@ -16,7 +16,8 @@ using namespace std;
 class SLNode:public BaseEvent
 {
 public:
-	void setTouchHnadler(EventHandler a);
+	void removeTouchHnadler();
+	void setTouchHandler(EventHandler a);
 public:
 	Mat4 getNtpTransform();
 	Mat4 getNtwTransform();
