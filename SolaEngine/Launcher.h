@@ -12,8 +12,9 @@ public:
 
 	Launcher();
 	~Launcher();
-
+public:
 	void calculateDeltaTime();
+	double getDeltaTime();
 
 	static Launcher* getInstance();
 	void initRC();

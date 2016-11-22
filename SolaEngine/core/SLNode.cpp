@@ -137,9 +137,9 @@ void SLNode::draw(GLMatrixStack &mvStack, GLGeometryTransform &transformPipeline
 	mvStack.Scale(_transformInfo.scaleX, _transformInfo.scaleY, 1);
 	mvStack.Rotate(_transformInfo.rotation, 0, 0, 1);
 
-	M3DMatrix44f* mvMatrix = (M3DMatrix44f*)transformPipeline.GetModelViewMatrix();
+	//M3DMatrix44f* mvMatrix = (M3DMatrix44f*)transformPipeline.GetModelViewMatrix();
 
-	memcpy(_transformInfo.mv, mvMatrix, sizeof(M3DMatrix44f));
+	//memcpy(_transformInfo.mv, mvMatrix, sizeof(M3DMatrix44f));
 
 	if (_texture != nullptr){
 		_texture->use();
@@ -172,10 +172,6 @@ void SLNode::setScale(float x, float y){
 
 void SLNode::setRotation(float value){
 	_transformInfo.rotation = value;
-}
-
-float SLNode::getRotation(){
-	return _transformInfo.rotation;
 }
 
 void SLNode::addChild(SLNode* value){

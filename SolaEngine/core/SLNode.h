@@ -34,10 +34,10 @@ public:
 	void setCentralityX(float x){ _centralityX = x; setTexture(_texture); };
 	void setCentralityY(float y){ _centralityY = y; setTexture(_texture); };
 
+	SLTransformInfo getTransformInfo(){ return _transformInfo; };
 	void setPosition(float x, float y);
 	void setScale(float x, float y);
 	void setRotation(float value);
-	float getRotation();
 
 public:
 	void addChild(SLNode* value);

@@ -34,6 +34,11 @@ void Launcher::calculateDeltaTime()
 	_lastMainLoopTime = now;
 }
 
+double Launcher::getDeltaTime()
+{
+	return _deltaTime;
+}
+
 void Launcher::initRC(){
 }
 

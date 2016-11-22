@@ -1,16 +1,17 @@
 SLNode* _aaaa;
+SLNode* _testNode1;
+SLNode* _testNode;
+SLNode* _testNode2;
+
 void Startup(){
 	SLTextureManager* tMgr = SLTextureManager::getInstance();
 	SLSceneManager* sMgr = SLSceneManager::getInstance();
 	SLScene* rScene = new SLScene();
 	sMgr->runScene(rScene);
 
-	SLNode* _testNode;
-	SLNode* _testNode1;
-	SLNode* _testNode2;
+
 
 	_testNode = new SLNode();
-
 	char curPath[MAX_PATH];
 	GetCurrentDirectory(MAX_PATH, curPath);
 	string path(curPath);
@@ -50,20 +51,19 @@ void Startup(){
 	_aaaa->setCentralityX(0.5f);
 	_aaaa->setCentralityY(0.5f);
 
-	EventHandler b = [](void* data){
-		float aa = _aaaa->getRotation();
-		aa = aa + 0.2f;
-		if (aa > 360)
-			aa = 0.0f;
-		_aaaa->setRotation(aa);
-		float a = aa / 360.0f * 1.5f;
-		if (a > 1)
-			a = 1.0f;
-		_aaaa->setAlpha(a);
-	};
+	EventHandler bc = [](void* data){
+		float dt = (float)Launcher::getInstance()->getDeltaTime();
+		//printf("dt is %f\r\n", dt);
+		SLTransformInfo tInfo = _testNode2->getTransformInfo();
+		float x = tInfo.tanslateX;
+		x = x + 30.0f*dt;
+		if (x > 100)
+			x = 0.0f;
 
-	BaseHandler* bb = new BaseHandler(b);
-	_testNode3->addEventListener(BaseEvent::EVENT_ON_NODE_UPDATED, bb);
+		_testNode2->setPosition(x, 0);
+	};
+	BaseHandler* bb = new BaseHandler(bc);
+	_testNode2->addEventListener(BaseEvent::EVENT_ON_NODE_UPDATED, bb);
 
 	t = tMgr->addTexture(path + "6.png");
 	auto aaaaa = new SLNode();
@@ -77,6 +77,23 @@ void Startup(){
 	};
 	aaaaa->setTouchHandler(a);
 	aaaaa->removeTouchHnadler();
+
+
+
+	EventHandler b = [](void* data){
+		float aa = _aaaa->getTransformInfo().rotation;
+		aa = aa + 0.2f;
+		if (aa > 360)
+			aa = 0.0f;
+		_aaaa->setRotation(aa);
+		float a = aa / 360.0f * 1.5f;
+		if (a > 1)
+			a = 1.0f;
+		_aaaa->setAlpha(a);
+	};
+
+	BaseHandler* bb1 = new BaseHandler(b);
+	_testNode3->addEventListener(BaseEvent::EVENT_ON_NODE_UPDATED, bb1);
 
 	rScene->addChild(aaaaa);
 	rScene->addChild(_testNode3);
