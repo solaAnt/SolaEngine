@@ -116,6 +116,7 @@
     <ClInclude Include="extends\math\Vec2.h" />
     <ClInclude Include="extends\math\Vec3.h" />
     <ClInclude Include="extends\math\Vec4.h" />
+    <ClInclude Include="game\Startup.h" />
     <ClInclude Include="Launcher.h" />
     <ClInclude Include="managers\SLSceneManager.h" />
     <ClInclude Include="managers\SLTextureManager.h" />

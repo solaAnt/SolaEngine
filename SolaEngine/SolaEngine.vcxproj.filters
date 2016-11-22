@@ -34,6 +34,9 @@
     <Filter Include="源文件\extends\libpng">
       <UniqueIdentifier>{9bc64394-405e-4986-bd59-e7f0663879b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\game">
+      <UniqueIdentifier>{26ff9c92-dd29-40cd-8729-12b48bf365ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="openlDev\gltools\GLTriangleBatch.cpp">
@@ -172,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="events\TouchEvent.h">
       <Filter>源文件\events</Filter>
+    </ClInclude>
+    <ClInclude Include="game\Startup.h">
+      <Filter>源文件\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
