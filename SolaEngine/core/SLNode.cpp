@@ -95,24 +95,36 @@ void SLNode::setTexture(SLTexture* texture){
 	float width = texture->getWidth();
 	float height = texture->getHeight();
 
+	float offsetX = _centralityX*width;
+	float offsetY = _centralityY*height;
+
+	float leftX = -offsetX;
+	float rightX = width - offsetX;
+
+	float bottomY = -offsetY;
+	float topY = height - offsetY;
+
+	GLBatch	triangleBatch;
+	_triangleBatch = triangleBatch;
+
 	_triangleBatch.Reset();
 	_triangleBatch.Begin(GL_TRIANGLE_STRIP, 4, 1);
 
 	_triangleBatch.MultiTexCoord2f(0, 0.0f, 0.0f);
 	_triangleBatch.Color4f(1, 1, 1, 1);
-	_triangleBatch.Vertex3f(0, 0, 0);
+	_triangleBatch.Vertex3f(leftX, bottomY, 0);
 
 	_triangleBatch.MultiTexCoord2f(0, 1.0f, 0.0f);
 	_triangleBatch.Color4f(1, 1, 1, 1);
-	_triangleBatch.Vertex3f(width, 0, 0);
+	_triangleBatch.Vertex3f(rightX, bottomY, 0);
 
 	_triangleBatch.MultiTexCoord2f(0, 0.0f, 1.0f);
 	_triangleBatch.Color4f(1, 1, 1, 1);
-	_triangleBatch.Vertex3f(0, height, 0);
+	_triangleBatch.Vertex3f(leftX, topY, 0);
 
 	_triangleBatch.MultiTexCoord2f(0, 1.0f, 1.0f);
 	_triangleBatch.Color4f(1, 1, 1, 1);
-	_triangleBatch.Vertex3f(width, height, 0);
+	_triangleBatch.Vertex3f(rightX, topY, 0);
 
 	_triangleBatch.End();
 }
@@ -249,4 +261,7 @@ void SLNode::_init(){
 	_texture = nullptr;
 	_isRunning = false;
 	_alpha = 1.0f;
+
+	_centralityX = 0.0f;
+	_centralityY = 0.0f;
 }

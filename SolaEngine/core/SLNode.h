@@ -18,39 +18,53 @@ class SLNode:public BaseEvent
 public:
 	void removeTouchHnadler();
 	void setTouchHandler(EventHandler a);
+
 public:
 	Mat4 getNtpTransform();
 	Mat4 getNtwTransform();
 	Vec3 covNtw(Vec3 np);
 	Vec3 covWtn(Vec3 wp);
+
 public:
 	void beforeRender(float dt);
 	void afterRender(float dt);
-
-	void setTexture(SLTexture* texture);
 	void draw(GLMatrixStack &mvStack, GLGeometryTransform &transformPipeline, GLShaderManager &shaderManager);
+
+public:
+	void setCentralityX(float x){ _centralityX = x; setTexture(_texture); };
+	void setCentralityY(float y){ _centralityY = y; setTexture(_texture); };
 
 	void setPosition(float x, float y);
 	void setScale(float x, float y);
 	void setRotation(float value);
 	float getRotation();
 
+public:
 	void addChild(SLNode* value);
 	void removeChild(SLNode* value);
 	void removeSelf();
 	void removeAll();
+
+public:
+	void setTexture(SLTexture* texture);
 
 	void setParent(SLNode* value);
 	SLNode* getParent();
 
 	void setAlpha(float alpha);
 	float getAlpha();
+
+public:
 	SLNode(int tag);
 	SLNode();
 	~SLNode();
 
 private:
 	void _init();
+
+	float _centralityX;
+	float _centralityY;
+
 	GLBatch	_triangleBatch;
 	SLTransformInfo _transformInfo;
 

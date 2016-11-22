@@ -47,6 +47,9 @@ void Startup(){
 	//_testNode3->setRotation(0);
 	_aaaa = _testNode1;
 
+	_aaaa->setCentralityX(0.5f);
+	_aaaa->setCentralityY(0.5f);
+
 	EventHandler b = [](void* data){
 		float aa = _aaaa->getRotation();
 		aa = aa + 0.2f;

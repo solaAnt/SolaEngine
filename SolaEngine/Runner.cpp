@@ -119,32 +119,6 @@ void RenderScene(void)
 
 int main(int argc, char *argv[])
 {
-	//EventHandler a = [](void* data){
-	//	int a = *((int*)data);
-	//	printf("It's a func,data is %d.\r\n",a);
-	//};
-
-	//EventHandler b = [](void* data){
-	//	printf("It's b func.\r\n");
-	//};
-
-	//BaseEvent* be = BaseEvent::getInstance();
-	//string eventName = "test";
-
-	//BaseHandler* aa = new BaseHandler(a);
-	//BaseHandler* bb = new BaseHandler(b);
-
-	//be->addEventListener(eventName, aa);
-	//be->addEventListener(eventName, bb);
-
-	//int data = 1;
-	//void* datap = &data;
-
-	//be->removeListener(eventName, bb);
-	//delete bb;
-
-	//be->dispathEvent(eventName, datap);
-
 	gltSetWorkingDirectory(argv[0]);
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
