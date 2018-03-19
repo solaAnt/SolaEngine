@@ -10,11 +10,16 @@ public:
 
 	float tanslateX;
 	float tanslateY;
+	float tanslateZ;
 
 	float scaleX=1;
 	float scaleY=1;
+	float scaleZ = 1;
 
-	float rotation;
+	float rotationX;
+	float rotationY;
+	float rotationZ;
+
 	M3DMatrix44f mv;
 private:
 

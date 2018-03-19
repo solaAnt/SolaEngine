@@ -76,7 +76,7 @@ void BaseEvent::removeListener(string eventName, BaseHandler* handlerValue){
 			handlers->erase(it);
 			delete handlerValue;
 
-			printf("Remove handler.\r\n");
+			//printf("Remove handler.\r\n");
 		}
 	}
 	else{

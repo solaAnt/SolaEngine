@@ -29,6 +29,11 @@ Vec4::Vec4()
 {
 }
 
+Vec4::Vec4(float xx, float yy, float zz)
+: x(xx), y(yy), z(zz), w(0)
+{
+}
+
 Vec4::Vec4(float xx, float yy, float zz, float ww)
     : x(xx), y(yy), z(zz), w(ww)
 {

@@ -175,12 +175,16 @@ static const char *szTextureReplaceVP =	"uniform mat4 mvpMatrix;"
 										"attribute vec2 vTexCoord0;"
 										"attribute vec4 vColor;"
 
+										"varying vec4 mVTex;"
+
 										"varying vec2 vTex;"
 										"varying vec4 vFragColor;"
 										"void main(void) "
 										"{ vTex = vTexCoord0;"
 										"vFragColor = vColor; "
+										
 										" gl_Position = mvpMatrix * vVertex; "
+										"mVTex=gl_Position;"
 										"}";
 									
 static const char *szTextureReplaceFP = 
@@ -191,11 +195,37 @@ static const char *szTextureReplaceFP =
 										"varying vec4 vFragColor; "
 										"uniform sampler2D textureUnit0;"
 										"uniform vec4 uColor;"
-										
+
 										"void main(void) "
 										"{ gl_FragColor = texture2D(textureUnit0, vTex)*vFragColor*uColor; "
 										"}";
 
+static const char *szTextureReplaceFP2 =
+#ifdef OPENGL_ES
+"precision mediump float;"
+#endif
+"varying vec4 mVTex;"
+"varying vec2 vTex;"
+"varying vec4 vFragColor; "
+"uniform sampler2D textureUnit0;"
+"uniform vec4 uColor;"
+
+"void main(void) "
+"{ "
+"float shiness=0.1f;"
+"float sdiff=0.992f;"
+"int scount=25;"
+"vec2 sunPoint=uColor.xy;"
+
+"vec2 sp=(vTex-sunPoint);"
+"vec4 c=texture2D(textureUnit0, vTex); "
+
+"for(int i=0;i<scount;i++){"
+"sp = sp*sdiff; "
+"c=c+texture2D(textureUnit0,sunPoint+sp)*shiness;"
+"}"
+"gl_FragColor = c/2; "
+"}";
 
 // Just put the texture on the polygons
 static const char *szTextureRectReplaceVP =	"uniform mat4 mvpMatrix;"
@@ -343,6 +373,9 @@ bool GLShaderManager::InitializeStockShaders(void)
 	uiStockShaders[GLT_SHADER_TEXTURE_REPLACE]  = gltLoadShaderPairSrcWithAttributes(szTextureReplaceVP, szTextureReplaceFP, 3, 
 		GLT_ATTRIBUTE_VERTEX, "vVertex", GLT_ATTRIBUTE_TEXTURE0, "vTexCoord0", GLT_ATTRIBUTE_COLOR, "vColor");
 
+	uiStockShaders[GLT_SHADER_TEXTURE_REPLACE_GOD_RAY] = gltLoadShaderPairSrcWithAttributes(szTextureReplaceVP, szTextureReplaceFP2, 3,
+		GLT_ATTRIBUTE_VERTEX, "vVertex", GLT_ATTRIBUTE_TEXTURE0, "vTexCoord0", GLT_ATTRIBUTE_COLOR, "vColor");
+
 	uiStockShaders[GLT_SHADER_TEXTURE_MODULATE] = gltLoadShaderPairSrcWithAttributes(szTextureModulateVP, szTextureModulateFP, 2,
 														GLT_ATTRIBUTE_VERTEX, "vVertex", GLT_ATTRIBUTE_TEXTURE0, "vTexCoord0");
 
@@ -397,6 +430,7 @@ GLint GLShaderManager::UseStockShader(GLT_STOCK_SHADER nShaderID, ...)
 			break;
 
         case GLT_SHADER_TEXTURE_RECT_REPLACE:
+		case GLT_SHADER_TEXTURE_REPLACE_GOD_RAY:
 		case GLT_SHADER_TEXTURE_REPLACE:	// Just the texture place
 			iTransform = glGetUniformLocation(uiStockShaders[nShaderID], "mvpMatrix");
 		    mvpMatrix = va_arg(uniformList, M3DMatrix44f*);

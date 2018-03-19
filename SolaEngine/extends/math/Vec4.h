@@ -87,6 +87,7 @@ public:
      * @param zz The z coordinate.
      * @param ww The w coordinate.
      */
+	Vec4(float xx, float yy, float zz);
     Vec4(float xx, float yy, float zz, float ww);
 
     /**

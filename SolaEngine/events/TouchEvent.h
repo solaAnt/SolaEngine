@@ -18,6 +18,7 @@ class TouchEvent :public BaseEvent
 public:
 	const static string EVENT_ON_TOUCH_BEGIN;
 	const static string EVENT_ON_TOUCH_END;
+	const static string EVENT_ON_TOUCH_MOVE;
 
 	static TouchEvent* getInstance(){
 		if (_instance == nullptr)

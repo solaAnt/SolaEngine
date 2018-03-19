@@ -1,5 +1,6 @@
 #include "SLTexture.h"
 #include "../extends/libpng/Libpng.h"
+#include "../core/misc/SLFileUtils.h"
 
 SLTexture::SLTexture(){
 	glGenTextures(1, &_textureName);
@@ -10,6 +11,9 @@ SLTexture::~SLTexture(){
 }
 
 void SLTexture::init(string path){
+	SLFileUtils* f = SLFileUtils::getInstance();
+	path = f->getFullPatch(path);
+
 	glBindTexture(GL_TEXTURE_2D, _textureName);
 	this->_LoadTGATexture(path.c_str(), GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR, GL_REPEAT);
 	glBindTexture(GL_TEXTURE_2D, 0);

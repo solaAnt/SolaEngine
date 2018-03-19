@@ -770,6 +770,7 @@ void Mat4::rotate(const Vec3& axis, float angle, Mat4* dst) const
 
 void Mat4::rotateX(float angle)
 {
+	angle = MATH_DEG_TO_RAD(angle);
     rotateX(angle, this);
 }
 
@@ -782,6 +783,7 @@ void Mat4::rotateX(float angle, Mat4* dst) const
 
 void Mat4::rotateY(float angle)
 {
+	angle = MATH_DEG_TO_RAD(angle);
     rotateY(angle, this);
 }
 
@@ -794,6 +796,7 @@ void Mat4::rotateY(float angle, Mat4* dst) const
 
 void Mat4::rotateZ(float angle)
 {
+	angle = MATH_DEG_TO_RAD(angle);
     rotateZ(angle, this);
 }
 

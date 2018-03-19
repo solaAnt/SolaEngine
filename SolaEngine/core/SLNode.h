@@ -10,7 +10,7 @@
 #include "../core/SLTexture.h"
 #include "../events/BaseEvent.h"
 #include "../extends/math/Mat4.h"
-
+#include "../core/render/SLShader.h"
 using namespace std;
 
 class SLNode:public BaseEvent
@@ -28,7 +28,8 @@ public:
 public:
 	void beforeRender(float dt);
 	void afterRender(float dt);
-	void draw(GLMatrixStack &mvStack, GLGeometryTransform &transformPipeline, GLShaderManager &shaderManager);
+	void draw(GLMatrixStack &mvStack, GLGeometryTransform &transformPipeline);
+	virtual void onDraw(GLMatrixStack &mvStack, GLGeometryTransform &transformPipeline);
 
 public:
 	void setCentralityX(float x){ _centralityX = x; setTexture(_texture); };
@@ -47,7 +48,7 @@ public:
 
 public:
 	void setTexture(SLTexture* texture);
-
+	SLTexture* getTexture();
 	void setParent(SLNode* value);
 	SLNode* getParent();
 
@@ -55,17 +56,23 @@ public:
 	float getAlpha();
 
 public:
+	float test_gr_x;
+	float test_gr_y;
 	SLNode(int tag);
 	SLNode();
-	~SLNode();
+	virtual ~SLNode();
+
+protected:
+	void _init();
+	SLShader* _shader;
+	SLTexture* _texture;
+	GLBatch	_triangleBatch;
 
 private:
-	void _init();
 
 	float _centralityX;
 	float _centralityY;
 
-	GLBatch	_triangleBatch;
 	SLTransformInfo _transformInfo;
 
 	bool _isRunning;
@@ -74,7 +81,7 @@ private:
 	vector<SLNode*> _childrens;
 
 	float _alpha;
-	SLTexture* _texture;
+	
 	BaseHandler* _touchHnadler;
 	EventHandler _callBackd;
 };

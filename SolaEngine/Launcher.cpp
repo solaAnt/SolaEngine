@@ -8,9 +8,9 @@
 
 Launcher* Launcher::_instance = 0;
 
-const char* Launcher::APPLICATION_TITLE = "SolaEngine(Ver beta)      点击窗口，测试基础动态效果和点击响应。";
-int Launcher::DISPLAY_WIDTH = 800;
-int Launcher::DISPLAY_HEIGHT = 500;
+const char* Launcher::APPLICATION_TITLE = "SolaEngine(Ver beta 0.2) 2D+3D 骨骼动画";
+int Launcher::DISPLAY_WIDTH = 512*3/1.5f;//1024.0f;
+int Launcher::DISPLAY_HEIGHT = 768 / 1.5f;//512.0f*1.5;
 
 Launcher::Launcher(){
 }
@@ -26,8 +26,24 @@ Launcher* Launcher::getInstance(){
 	return _instance;
 }
 
+bool up = true;
 void Launcher::calculateDeltaTime()
-{
+{	
+	if (up){
+		testcode += 0.002f;
+		if (testcode >= 2.0f){
+			testcode = 2.0f;
+			up = false;
+		}
+	}
+	else{
+		testcode -= 0.002f;
+		if (testcode <= 0.0f){
+			testcode = 0.0f;
+			up = true;
+		}
+	}
+
 	clock_t now = clock();
 	_deltaTime=(double)(now - _lastMainLoopTime) / CLOCKS_PER_SEC;
 	//printf("_deltaTime %f \r\n", _deltaTime);

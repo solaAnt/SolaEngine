@@ -3,6 +3,9 @@
 #include <ctime>
 #include "core/SLSize.h"
 #include "core/SLPoint.h"
+
+#include "extends\math\Mat4.h"
+
 class Launcher
 {
 public:
@@ -22,6 +25,10 @@ public:
 
 	void setWinSize(SLSize size);
 	SLPoint screen2wp(SLPoint* screenPoint);
+
+	float testcode=0.0f;
+	Mat4 viewMatrix;
+
 private:
 
 	static Launcher* _instance;

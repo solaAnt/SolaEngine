@@ -4,7 +4,7 @@
 #include "SLNode.h"
 #include "../events/TouchEvent.h"
 #include "SLPoint.h"
-
+#include "../managers/SLShaderManager.h"
 void SLNode::removeTouchHnadler(){
 	if (_callBackd == nullptr || _touchHnadler == nullptr)
 		return;
@@ -26,8 +26,6 @@ void SLNode::setTouchHandler(EventHandler callBackd){
 		SLPoint* p = (SLPoint*)(data);
 
 		Vec3 res = this->covWtn(Vec3(p->x, p->y, 0));
-		printf("EVENT_ON_TOUCH_BEGIN%f,%f \r\n", res.x, res.y);
-		printf("There need a hit Test.\r\n");
 
 		TouchEventData touchEventData;
 		touchEventData.eventName = TouchEvent::EVENT_ON_TOUCH_BEGIN;
@@ -64,7 +62,13 @@ Mat4 SLNode::getNtpTransform(){
 	Vec3 tl(info.tanslateX, info.tanslateY, 0);
 	Mat4 mat;
 	mat.translate(tl);
-	mat.rotateZ(info.rotation);
+
+	mat.rotateX((info.rotationX));
+	mat.rotateY((info.rotationY));
+	mat.rotateZ((info.rotationZ));
+
+	Vec3 t2(info.scaleX, info.scaleY, info.scaleZ);
+	mat.scale(t2);
 
 	return mat;
 }
@@ -88,6 +92,11 @@ void SLNode::beforeRender(float dt){
 void SLNode::afterRender(float dt){
 	void* data = (void*)&dt;
 	this->dispathEvent(BaseEvent::EVENT_ON_NODE_UPDATED, data);
+}
+
+
+SLTexture* SLNode::getTexture(){
+	return _texture;
 }
 
 void SLNode::setTexture(SLTexture* texture){
@@ -129,35 +138,46 @@ void SLNode::setTexture(SLTexture* texture){
 	_triangleBatch.End();
 }
 
-void SLNode::draw(GLMatrixStack &mvStack, GLGeometryTransform &transformPipeline, GLShaderManager &shaderManager){
+void SLNode::draw(GLMatrixStack &mvStack, GLGeometryTransform &transformPipeline){
 	this->beforeRender(1);
 
 	mvStack.PushMatrix();
 	mvStack.Translate(_transformInfo.tanslateX, _transformInfo.tanslateY, 0);
 	mvStack.Scale(_transformInfo.scaleX, _transformInfo.scaleY, 1);
-	mvStack.Rotate(_transformInfo.rotation, 0, 0, 1);
+	mvStack.Rotate(_transformInfo.rotationZ, 0, 0, 1);
 
 	//M3DMatrix44f* mvMatrix = (M3DMatrix44f*)transformPipeline.GetModelViewMatrix();
 
 	//memcpy(_transformInfo.mv, mvMatrix, sizeof(M3DMatrix44f));
 
-	if (_texture != nullptr){
-		_texture->use();
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-		M3DVector4f color = { 1, 1, 1, _alpha };
-		shaderManager.UseStockShader(GLT_SHADER_TEXTURE_REPLACE, transformPipeline.GetModelViewProjectionMatrix(), 0, color);
-		_triangleBatch.Draw();
-	}
+	onDraw(mvStack, transformPipeline);
 
 	for (size_t i = 0; i < _childrens.size(); i++)
 	{
 		SLNode* node = _childrens[i];
-		node->draw(mvStack, transformPipeline, shaderManager);
+		node->draw(mvStack, transformPipeline);
 	}
 	mvStack.PopMatrix();
 
 	this->afterRender(1);
+}
+
+void SLNode::onDraw(GLMatrixStack &mvStack, GLGeometryTransform &transformPipeline){
+	if (_texture != nullptr){
+		//_texture->use();
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+		M3DVector4f color = { test_gr_x, test_gr_y, 1, _alpha };
+
+		this->_shader->use();
+		this->_shader->setUniformMat44(string("mvpMatrix"), (M3DMatrix44f*)transformPipeline.GetModelViewProjectionMatrix());
+		this->_shader->setUniformTex(string("textureUnit0"), 0, _texture);
+
+		//this->_shader->setUniformVec4(string("uColor"), (M3DMatrix44f*)transformPipeline.GetModelViewProjectionMatrix());
+		//shaderManager.UseStockShader(GLT_SHADER_TEXTURE_REPLACE_GOD_RAY, transformPipeline.GetModelViewProjectionMatrix(), 0, color);
+		//shaderManager.UseStockShader(GLT_SHADER_TEXTURE_REPLACE, transformPipeline.GetModelViewProjectionMatrix(), 0, color);
+		_triangleBatch.Draw();
+	}
 }
 
 void SLNode::setPosition(float x, float y){
@@ -171,7 +191,7 @@ void SLNode::setScale(float x, float y){
 }
 
 void SLNode::setRotation(float value){
-	_transformInfo.rotation = value;
+	_transformInfo.rotationZ = value;
 }
 
 void SLNode::addChild(SLNode* value){
@@ -186,7 +206,7 @@ void SLNode::addChild(SLNode* value){
 }
 
 void SLNode::removeChild(SLNode* value){
-	printf("%d removeChild\r\n", _tag);
+	//printf("%d removeChild\r\n", _tag);
 
 	for (size_t i = 0; i < _childrens.size(); i++)
 	{
@@ -248,16 +268,21 @@ SLNode::SLNode(int tag)
 
 SLNode::~SLNode()
 {
-	printf("%d ~SLNode\r\n", _tag);
+	//printf("%d ~SLNode\r\n", _tag);
 	_childrens.clear();
 	_parent = nullptr;
 }
 
 void SLNode::_init(){
+	SLShaderManager* smgr = SLShaderManager::getInstance();
+	_shader = smgr->addShader(string("test"));
+
 	_texture = nullptr;
 	_isRunning = false;
 	_alpha = 1.0f;
 
 	_centralityX = 0.0f;
 	_centralityY = 0.0f;
+	test_gr_x = 1.0f;
+	test_gr_y = 1.0f;
 }
