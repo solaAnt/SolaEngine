@@ -1,5 +1,16 @@
 ﻿# SolaEngine
-写了一个简单的2D引擎。</br>
+2D+3D渲染</br>
+
+渲染加工肯定是需要重构的
+
+2017年8月01日</br>
+添加3D骨骼动画解析与播放部分，蒙皮待添加</br>
+
+2017年6月01日</br>
+添加3D渲染模块与模型解析</br>
+
+2016年11月15日</br>
+添加TouchEvent，统一处理点击事件</br>
 
 </br>
 引擎目前包含功能：</br>
@@ -15,10 +26,9 @@
 	点击冒泡处理</br>
 	音效模块</br>
 </br>
+
 由于历史原因，实现部分得比较粗暴，后面会慢慢改进和优化代码。</br>
 </br>
-2016年11月15日</br>
-添加TouchEvent，统一处理点击事件</br>
-把GLUT嵌入好在引擎内部。</br>
+
 
 ![image](https://github.com/ebnaqq/SolaEngine/blob/master/Example/ExamplePic.png)
