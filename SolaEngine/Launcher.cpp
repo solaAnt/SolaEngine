@@ -8,7 +8,7 @@
 
 Launcher* Launcher::_instance = 0;
 
-const char* Launcher::APPLICATION_TITLE = "SolaEngine(Ver beta 0.2) 2D+3D 骨骼动画";
+const char* Launcher::APPLICATION_TITLE = "SolaEngine(Ver beta 0.2) 后处理实现";
 int Launcher::DISPLAY_WIDTH = 512*3/1.5f;//1024.0f;
 int Launcher::DISPLAY_HEIGHT = 768 / 1.5f;//512.0f*1.5;
 

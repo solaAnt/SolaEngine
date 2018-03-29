@@ -28,6 +28,7 @@ void main(void)
 	vec4 c;
 	c=texture2D(textureUnit0, vTex)*d;
 	c.a=vFragColor.a;
+	//gl_FragData[0] = c;
 	gl_FragColor = c;
 	//gl_FragColor = vec4(1.0f,0.0f,0.0f,1.0f);
 	//float d=dot(vNorl,lightDir);

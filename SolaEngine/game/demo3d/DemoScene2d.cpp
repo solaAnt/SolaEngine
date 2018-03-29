@@ -89,7 +89,7 @@ void DemoScene2d::_init(){
 	SLSceneManager* sMgr = SLSceneManager::getInstance();
 	SLScene* rScene = sMgr->getRunningScene();
 
-	int scaleRate = 1.8f;
+	float scaleRate = 1.0f;
 	SLNode* uinode = new SLNode();
 	SLTexture* uitex = tMgr->addTexture("demoui\\testmain.png");
 	uinode->setTexture(uitex);

@@ -11,6 +11,12 @@ public:
 	SLTexture();
 	~SLTexture();
 
+	void setTextureId(GLuint id,int w,int h){
+		_textureName = id;
+		_width = w;
+		_height = h;
+	}
+
 	void init(string path);
 	void use();
 

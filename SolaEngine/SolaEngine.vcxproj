@@ -106,6 +106,7 @@
     <ClCompile Include="game\demo3d\DemoScene3d.cpp" />
     <ClCompile Include="game\Plane.cpp" />
     <ClCompile Include="Launcher.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="managers\SLCameraManager.cpp" />
     <ClCompile Include="managers\SLFontManager.cpp" />
     <ClCompile Include="managers\SLSceneManager.cpp" />
@@ -116,7 +117,6 @@
     <ClCompile Include="openlDev\gltools\GLTools.cpp" />
     <ClCompile Include="openlDev\gltools\GLTriangleBatch.cpp" />
     <ClCompile Include="openlDev\gltools\math3d.cpp" />
-    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\2D\SLFontTTF.h" />

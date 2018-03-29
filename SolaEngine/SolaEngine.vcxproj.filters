@@ -150,9 +150,6 @@
     <ClCompile Include="managers\SLShaderManager.cpp">
       <Filter>源文件\managers</Filter>
     </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="core\render\SLMatrixStack.cpp">
       <Filter>源文件\core\render</Filter>
     </ClCompile>
@@ -192,6 +189,9 @@
     <ClCompile Include="core\misc\SLString.cpp">
       <Filter>源文件\core\misc</Filter>
     </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\SLTexture.h">
@@ -226,9 +226,6 @@
     </ClInclude>
     <ClInclude Include="events\BaseHandler.h">
       <Filter>源文件\events</Filter>
-    </ClInclude>
-    <ClInclude Include="TestCode.h">
-      <Filter>源文件</Filter>
     </ClInclude>
     <ClInclude Include="extends\libpng\Libpng.h">
       <Filter>源文件\extends\libpng</Filter>
@@ -1294,6 +1291,9 @@
     </ClInclude>
     <ClInclude Include="core\misc\SLString.h">
       <Filter>源文件\core\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="TestCode.h">
+      <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

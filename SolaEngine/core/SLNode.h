@@ -47,6 +47,10 @@ public:
 	void removeAll();
 
 public:
+	void setShader(SLShader* shader){
+		_shader = shader;
+	};
+
 	void setTexture(SLTexture* texture);
 	SLTexture* getTexture();
 	void setParent(SLNode* value);
